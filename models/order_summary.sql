@@ -11,10 +11,15 @@ WITH order_summary AS (
     o.quantity order_quantity,
     p.price product_price,
     (p.price * o.quantity) AS total_revenue,
-    p.stock_quantity
+    p.stock_quantity,
+        CASE 
+        WHEN p.stock_quantity < 100 THEN "Order Stock"
+        ELSE "Enough Stock"
+    END AS order_stock
 FROM {{ ref("stg_order")}} o 
 JOIN {{ ref("stg_product")}} p USING (product_id)
 JOIN {{ ref("stg_customer")}} c USING (customer_id)
 )
 
-SELECT * FROM order_summary
+SELECT *   
+FROM order_summary
