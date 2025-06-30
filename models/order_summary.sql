@@ -1,3 +1,5 @@
+{{ config (materialized='table')}}
+
 WITH order_summary AS (
     SELECT c.name customer_name, 
     c.email customer_email,
