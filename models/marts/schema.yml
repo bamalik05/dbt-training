@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: order_summary
+    description: >
+      Summary of customer orders joined with product and customer details,
+      including derived revenue and stock status.
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+      - name: order_id
+        description: Unique identifier for the order
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        description: Unique identifier for the product
+        tests:
+          - not_null
+      - name: customer_name
+        description: Name of the customer
+      - name: customer_email
+        description: Email address of the customer
+        tests:
+          - not_null
+      - name: customer_country
+        description: Country where the customer is located
+      - name: order_date
+        description: Date when the order was placed
+        tests:
+          - not_null
+      - name: order_status
+        description: Status of the order (e.g., completed, cancelled)
+        tests:
+          - accepted_values:
+              values: ['completed', 'cancelled', 'pending']
+      - name: product_name
+        description: Name of the product ordered
+      - name: product_category
+        description: Category of the product
+      - name: order_quantity
+        description: Quantity of the product ordered
+      - name: product_price
+        description: Price per unit of the product
+      - name: revenue
+        description: Total revenue from the order (price × quantity)
+      - name: stock_quantity
+        description: Stock quantity available at the time of order
+      - name: order_stock
+        description: Label indicating stock sufficiency for the product
+        tests:
+          - accepted_values:
+              values: ['Order Stock', 'Enough Stock']
