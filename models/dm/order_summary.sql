@@ -2,6 +2,9 @@
 
 WITH order_summary AS (
     SELECT 
+        c.customer_id,
+        o.order_id,
+        p.product_id,
         c.name customer_name, 
         c.email customer_email,
         c.country customer_country,
