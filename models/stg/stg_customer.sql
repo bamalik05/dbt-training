@@ -1,3 +1,5 @@
+
+
 WITH stg_customer AS (
     SELECT *
     FROM raw.customer
